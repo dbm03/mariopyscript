@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MarioJS</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style type="text/css">
+        canvas {
+            transform:scale(3);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom:20rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="statusDiv"></div>
+    <div class="container">
+        <canvas id="canvas" width="256" height="200" style="background-color:#333"></canvas>
+    </div>
+    <py-config>
+    [[fetch]]
+    files = ["background_03.png", "pyxel.py"]
+    </py-config>
+    <py-script src="./pyxel.py">
+    </py-script>
+    <py-script src="./main.py">
+    </py-script>
+    
+    <!-- <script type="text/javascript">
+        background = new Image()
+
+        function init() {
+            background.src = './background_03.png'
+        }
+
+        function run() {
+            loop = pyscript.runtime.globals.get('gameloop');
+            window.requestAnimationFrame(run);
+            loop()
+        }
+
+        window.addEventListener('load', init, false);
+    </script>
+    <button onclick="run()">Start</button> -->
+</body>
+</html>
