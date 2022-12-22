@@ -14,6 +14,7 @@ from js import (
 from pyodide.ffi import create_proxy
 
 import pyxel
+from particles import Firework
 
 class App:
     def __init__(self):
@@ -21,10 +22,11 @@ class App:
         
         # initialize ctx
         pyxel.init(256, 200, canvasDOM)
-        pyxel.load_assets(["background_03.png", "background_03.png", "background_03.png"])
+        pyxel.load_assets(["/assets/tiles.png", "/assets/spritesheet_mario.png", "/assets/background_03.png"])
         
         print(pyxel)
-
+        self.fireworks = []
+        self.fireworks.append(Firework(50, 150))
         self.start_game()
 
     
@@ -45,9 +47,18 @@ class App:
 
     def update(self):
         pyxel.update()
+        if pyxel.frame_count % 10 == 0:
+            self.fireworks.append(Firework(50,150))
+        for firework in self.fireworks:
+            firework.update()
+
+        print(len(self.fireworks))
 
 
     def draw(self):
-        pyxel.fillRect(pyxel.frame_count, 50, 100, 100)
+        pyxel.clear()
+        pyxel.blt(0, 0, 2, 0, 0, 256, 256)
+        for firework in self.fireworks:
+            firework.draw(0)
 
 App()
