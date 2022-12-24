@@ -25,7 +25,7 @@ class App:
         
         # initialize ctx
         pyxel.init(256, 200, canvasDOM)
-        pyxel.load_assets(["/assets/tiles.png", "/assets/spritesheet_mario.png", "/assets/background_03.png"])
+        pyxel.load_assets(["https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/tiles.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/spritesheet_mario.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/background_03.png"])
         
         self.level = Level(settings.level01)
         self.start_game()
