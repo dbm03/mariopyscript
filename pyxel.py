@@ -18,6 +18,7 @@ canvas_height = 0
 frame_count = 0
 imageBank = [] # image bank of max length 3
 loadedImages = 0
+loading = True
 
 KEY_LEFT = 37
 KEY_UP = 38
@@ -98,6 +99,9 @@ def load_assets(assets: list):
 def update():
     global frame_count
     frame_count += 1
+    global loading
+    if loadedImages >= 3:
+        loading = False
 
 def fillRect(x, y, width, height):
     ctx.fillStyle = '#0ff';
@@ -107,7 +111,7 @@ def cls(col=0):
     ctx.clearRect(0, 0, canvas_width, canvas_height)
 
 def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
-    if loadedImages < 3:
+    if loading:
         return
     #x, y refer to the position on the screen to draw
     #_x, _y refer to the position of the image in the image bank

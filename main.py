@@ -46,13 +46,17 @@ class App:
     def update(self):
         pyxel.update()
         
-        self.level.update()
+        if not pyxel.loading:
+            self.level.update()
 
 
 
     def draw(self):
         pyxel.cls()
         
-        self.level.draw()
+        if not pyxel.loading:
+            self.level.draw()
+        else:
+            pyxel.text(100,100,"Loading...", 7)
 
 App()
