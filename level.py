@@ -150,7 +150,7 @@ class Level:
                     self.tiles.append(flag)
 
     def update(self):
-
+            print(len(self.particles))
             self.player.update(self.tiles, self.enemies, self.items, self.particles)
 
             self.camera.focus(self.player)

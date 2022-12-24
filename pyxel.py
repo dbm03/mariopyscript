@@ -117,10 +117,8 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
 
     elif width < 0:
         #flip horizontally
-        ctx.fillStyle = '#fff'
-        ctx.fillRect(_x,_y,30,30)
         ctx.scale(-1, 1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, -width, height, x, y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, -width, height, -x, y, width, height)
 
     elif height < 0:
         #flip vertically
