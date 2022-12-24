@@ -150,7 +150,6 @@ class Level:
                     self.tiles.append(flag)
 
     def update(self):
-            print(len(self.particles))
             self.player.update(self.tiles, self.enemies, self.items, self.particles)
 
             self.camera.focus(self.player)
@@ -174,7 +173,6 @@ class Level:
                     elif self.enemies[i].dead:
                         # ensure that dead animation has played once before deleting enemy
                         if self.enemies[i].animation_played_once:
-                            print("Killed: ", self.enemies[i])
                             del self.enemies[i]
 
                 # update time counter
@@ -211,7 +209,6 @@ class Level:
             for i in range(len(self.items) - 1, -1, -1):
                 self.items[i].update(self.tiles)
                 if self.items[i].used:
-                    print("Destroyed: ", self.items[i])
                     del self.items[i]
 
             # update particles

@@ -14,7 +14,7 @@ class Mario(Entity):
     def __init__(self, x, y):
         super().__init__(x, y, 16, 16)
         self.can_jump = False
-        self._speed = 3
+        self._speed = 4
         self.jump_force = 12
         # Direction of Mario, 0 stands for left; 1 stands for right
         self.score = 0
@@ -210,9 +210,6 @@ class Mario(Entity):
                     self.__apply_gravity()
                     # Mario jumps when dead
                     self.y += self._vy
-                    if self.animation.played_once:
-                        # GAMEOVER
-                        print("Gameover")
 
     def __update_walk_animation(self, new_direction: int):
         # if mario is not falling

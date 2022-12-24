@@ -40,14 +40,13 @@ def _handle_input(e):
         _pressedKeys[e.keyCode] = False
 
 def init(width: int, height: int, canvas: Element):
-    print("Creating canvasss")
     global ctx
     ctx = canvas.getContext("2d")
 
-    ctx.mozImageSmoothingEnabled = False;
-    ctx.webkitImageSmoothingEnabled = False;
-    ctx.msImageSmoothingEnabled = False;
-    ctx.imageSmoothingEnabled = False;
+    ctx.mozImageSmoothingEnabled = False
+    ctx.webkitImageSmoothingEnabled = False
+    ctx.msImageSmoothingEnabled = False
+    ctx.imageSmoothingEnabled = False
 
     canvas.style.width = f"{width}px"
     canvas.style.height = f"{height}px"
@@ -57,7 +56,6 @@ def init(width: int, height: int, canvas: Element):
 
     global canvas_width
     canvas_width = width
-    print(width, canvas_width)
     global canvas_height
     canvas_height = height
 
@@ -113,7 +111,7 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
     if (width < 0) and (height < 0):
         #flip horizontally and vertically
         ctx.scale(-1, -1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, -width, -height, x, y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, -width, -height, -x, -y, width, height)
 
     elif width < 0:
         #flip horizontally
@@ -123,7 +121,7 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
     elif height < 0:
         #flip vertically
         ctx.scale(1, -1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, width, -height, x, y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, width, -height, x, -y, width, height)
     
     else:
         ctx.drawImage(imageBank[image_bank], _x, _y, width, height, x, y, width, height)
@@ -133,8 +131,11 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
     #pyxel.blt(x, y, self._image_bank, self._x, self._y, width, height, self._transparent_col)
 
 
-def text(*args, **kwargs):
-    pass
+def text(x, y, text: str, color):
+    if(color == 7):
+        ctx.fillStyle = '#fff'
+
+    ctx.fillText(text, x, y);
 
 def quit():
     pass

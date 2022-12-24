@@ -9,6 +9,7 @@ from js import (
     requestAnimationFrame,
     Element,
     window,
+    setInterval,
 )
 
 from pyodide.ffi import create_proxy
@@ -26,22 +27,19 @@ class App:
         pyxel.init(256, 200, canvasDOM)
         pyxel.load_assets(["/assets/tiles.png", "/assets/spritesheet_mario.png", "/assets/background_03.png"])
         
-        print(pyxel)
         self.level = Level(settings.level01)
         self.start_game()
 
     
     def start_game(self):
-        # ctx.fillStyle = '#ccc'
-        # ctx.fillRect(0,0,256,200)
-        # ctx.fillStyle = '#0ff'
-        # ctx.fillRect(0, 50, 100, 60)
         pyxel.fillRect(0, 50, 100, 100)
-        self.game_loop()
+        proxy = create_proxy(self.game_loop)
+        interval_id = setInterval(proxy, 33, "a parameter");
+
         # ctx.drawImage(background, 0, 0)
 
     def game_loop(self, *args, **kwargs):
-        requestAnimationFrame(create_proxy(self.game_loop))
+        #requestAnimationFrame(create_proxy(self.game_loop))
         self.update()
         self.draw()
 
@@ -54,7 +52,6 @@ class App:
 
     def draw(self):
         pyxel.cls()
-        pyxel.blt(0, 0, 2, 0, 0, 256, 256)
         
         self.level.draw()
 
