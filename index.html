@@ -16,13 +16,45 @@
             justify-content: center;
             align-items: center;
         }
+        header{
+            width:100%;
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            max-width: 32px;
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            color:darkcyan;
+            background: #fff;
+        }
+
+        footer{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            margin-top:calc(100px*3);
+        }
     </style>
 </head>
 <body>
-    <div id="statusDiv"></div>
+    <header>
+        <a href="https://github.com/Barrarroso/mariopyscript" target="_blank">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+            Source Code
+        </a>
+    </header>
     <div class="container">
         <canvas id="canvas" width="256" height="200" style="background-color:#333"></canvas>
     </div>
+    <footer>
+        <a href="https://github.com/Barrarroso" target="_blank">Made by David</a>
+    </footer>
     <py-config>
     [[fetch]]
     files = ["/assets/background_03.png","/assets/spritesheet_mario.png","/assets/tiles.png", 
