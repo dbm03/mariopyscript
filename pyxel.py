@@ -7,6 +7,7 @@ from js import (
     Element,
     window,
     Image,
+    addEventListener,
 )
 from pyodide.ffi import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
@@ -15,7 +16,8 @@ ctx = None
 canvas_width = 0
 canvas_height = 0
 frame_count = 0
-imageBank = []
+imageBank = [] # image bank of max length 3
+loadedImages = 0
 
 KEY_LEFT = 37
 KEY_UP = 38
@@ -80,14 +82,18 @@ def init(width: int, height: int, canvas: Element):
 def btn(key: int):
     return _pressedKeys[key]
     
+def handle_image_load(e):
+    global loadedImages
+    loadedImages += 1
 
 def load_assets(assets: list):
     global imageBank
     for imageSrc in assets:
         image = document.createElement('img')
         image.src = imageSrc
+        
+        add_event_listener(image, "load", handle_image_load)
         imageBank.append(image)
-    
 
 def update():
     global frame_count
@@ -101,6 +107,8 @@ def cls(col=0):
     ctx.clearRect(0, 0, canvas_width, canvas_height)
 
 def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
+    if loadedImages < 3:
+        return
     #x, y refer to the position on the screen to draw
     #_x, _y refer to the position of the image in the image bank
 

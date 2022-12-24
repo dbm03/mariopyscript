@@ -32,7 +32,7 @@ class App:
 
     
     def start_game(self):
-        pyxel.fillRect(0, 50, 100, 100)
+        pyxel.fillRect(0, 0, 256, 100)
         proxy = create_proxy(self.game_loop)
         interval_id = setInterval(proxy, 33, "a parameter");
 
