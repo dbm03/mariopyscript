@@ -44,7 +44,7 @@ def _handle_input(e):
     elif e.type == "keyup":
         _pressedKeys[e.keyCode] = False
 
-def init(width: int, height: int, scale: int, canvas: Element):
+def init(width: int, height: int, canvas: Element, scale: int = 1,):
     global ctx
     ctx = canvas.getContext("2d", {'alpha': False})
 
@@ -108,10 +108,6 @@ def update():
     if loadedImages >= 3:
         loading = False
 
-def fillRect(x, y, width, height):
-    ctx.fillStyle = '#0ff';
-    ctx.fillRect(x*_scale, y*_scale , width*_scale, height*_scale)
-
 def cls(col=0):
     ctx.clearRect(0, 0, canvas_width, canvas_height)
 
@@ -145,38 +141,21 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
 
     ctx.restore()
 
-    #pyxel.blt(x, y, self._image_bank, self._x, self._y, width, height, self._transparent_col)
-
 
 def text(x, y, text: str, color):
     ctx.font = "10px Monospace"
-
+    ctx.textAlign = 'left'
     if(color == 7):
         ctx.fillStyle = '#fff'
 
-    ctx.fillText(text, x*_scale, y*_scale);
+    ctx.fillText(text, x*_scale, y*_scale)
+
+def centered_text(text: str, color):
+    if color == 7:
+        ctx.fillStyle = '#fff'
+
+    ctx.textAlign = 'center'
+    ctx.fillText(text, (canvas_width*_scale) / 2, (canvas_height*_scale) / 2)
 
 def quit():
     pass
-
-### to do transparent colors into transparent pixels
-
-"""
-var imgd = ctx.getImageData(0, 0, imageWidth, imageHeight),
-    pix = imgd.data;
-
-for (var i = 0, n = pix.length; i <n; i += 4) {
-    var r = pix[i],
-        g = pix[i+1],
-        b = pix[i+2];
-
-    if(g > 150){ 
-        // If the green component value is higher than 150
-        // make the pixel transparent because i+3 is the alpha component
-        // values 0-255 work, 255 is solid
-        pix[i + 3] = 0;
-    }
-}
-
-ctx.putImageData(imgd, 0, 0);​
-"""

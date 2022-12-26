@@ -201,7 +201,7 @@ class Level:
                         self.reset_level()
                     else:
                         # quit the game if not enough lives
-                        pyxel.quit()
+                        self.gameover = True
 
 
             # update items
@@ -252,6 +252,9 @@ class Level:
         # background image
         self.background.draw(self.camera.x_shift)
 
+        if self.gameover:
+            pyxel.centered_text("Game Over", 7)
+
         # draw tiles
         for tile in self.tiles:
             tile.draw(self.camera.x_shift)
@@ -264,7 +267,7 @@ class Level:
 
             # if end animation has finished
             if self.time == 0 and self.player.finishing_inside_castle:
-                pyxel.text(100,120,"Press 'ESC' to exit",7)
+                pyxel.centered_text("Press 'F5' to exit",7)
 
         # draw player
         self.player.draw(self.camera.x_shift)

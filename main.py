@@ -20,23 +20,20 @@ from level import Level
 import settings
 
 class App:
+    
     def __init__(self):
         canvasDOM = document.querySelector("#canvas")
         
         # initialize ctx
-        pyxel.init(256, 200, settings.SCALE, canvasDOM)
+        pyxel.init(256, 200, canvasDOM)
         pyxel.load_assets(["https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/tiles.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/spritesheet_mario.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/background_03.png"])
         
         self.level = Level(settings.level01)
         self.start_game()
-
     
     def start_game(self):
-        pyxel.fillRect(0, 0, 256, 100)
         proxy = create_proxy(self.game_loop)
         interval_id = setInterval(proxy, 33, "a parameter");
-
-        # ctx.drawImage(background, 0, 0)
 
     def game_loop(self, *args, **kwargs):
         #requestAnimationFrame(create_proxy(self.game_loop))
