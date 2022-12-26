@@ -24,7 +24,7 @@ class App:
         canvasDOM = document.querySelector("#canvas")
         
         # initialize ctx
-        pyxel.init(256, 200, canvasDOM)
+        pyxel.init(256, 200, settings.SCALE, canvasDOM)
         pyxel.load_assets(["https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/tiles.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/spritesheet_mario.png", "https://raw.githubusercontent.com/Barrarroso/mariopyscript/main/assets/background_03.png"])
         
         self.level = Level(settings.level01)

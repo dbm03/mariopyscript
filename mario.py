@@ -190,26 +190,16 @@ class Mario(Entity):
                     self.x = 0
                 if self.y > settings.SCREEN_HEIGHT:
                     self.die()
-            if pyxel.btn(pyxel.KEY_B):
-                if self.big:
-                    # turn Mario small
-                    self.big = False
-                    self.y += 16
-                    self.height = 16
-                else:
-                    # turn Mario big
-                    self.big = True
-                    self.y -= 16
-                    self.height = 32
-            else:
-                # growing or dying
-                if self._current_action == "grow":
-                    if self.animation.played_once:
-                        self.change_action("stand")
-                elif self._current_action == "death":
-                    self.__apply_gravity()
-                    # Mario jumps when dead
-                    self.y += self._vy
+                if pyxel.btn(pyxel.KEY_B):
+                    items.append(Mushroom(100,100, 1))
+            
+            if self._current_action == "grow":
+                if self.animation.played_once:
+                    self.change_action("stand")
+            elif self._current_action == "death":
+                self.__apply_gravity()
+                # Mario jumps when dead
+                self.y += self._vy
 
     def __update_walk_animation(self, new_direction: int):
         # if mario is not falling

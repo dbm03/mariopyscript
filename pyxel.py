@@ -20,12 +20,14 @@ imageBank = [] # image bank of max length 3
 loadedImages = 0
 loading = True
 
+_scale = 1
+
 KEY_LEFT = 37
 KEY_UP = 38
 KEY_RIGHT = 39
 KEY_DOWN = 40
 
-KEY_B = 90
+KEY_B = 66
 
 _pressedKeys = {
     KEY_LEFT: False, 
@@ -42,27 +44,30 @@ def _handle_input(e):
     elif e.type == "keyup":
         _pressedKeys[e.keyCode] = False
 
-def init(width: int, height: int, canvas: Element):
+def init(width: int, height: int, scale: int, canvas: Element):
     global ctx
-    ctx = canvas.getContext("2d")
+    ctx = canvas.getContext("2d", {'alpha': False})
 
     ctx.mozImageSmoothingEnabled = False
     ctx.webkitImageSmoothingEnabled = False
     ctx.msImageSmoothingEnabled = False
     ctx.imageSmoothingEnabled = False
 
-    canvas.style.width = f"{width}px"
-    canvas.style.height = f"{height}px"
+    canvas.style.width = f"{width*scale}px"
+    canvas.style.height = f"{height*scale}px"
 
-    canvas.width = width
-    canvas.height = height
+    canvas.width = width*scale
+    canvas.height = height*scale
 
     global canvas_width
-    canvas_width = width
+    canvas_width = width*scale
     global canvas_height
-    canvas_height = height
+    canvas_height = height*scale
 
-    ctx.clearRect(0, 0, width, height)
+    global _scale
+    _scale = scale
+
+    ctx.clearRect(0, 0, width*scale, height*scale)
 
      #init input
     add_event_listener(
@@ -105,7 +110,7 @@ def update():
 
 def fillRect(x, y, width, height):
     ctx.fillStyle = '#0ff';
-    ctx.fillRect(x, y, width, height)
+    ctx.fillRect(x*_scale, y*_scale , width*_scale, height*_scale)
 
 def cls(col=0):
     ctx.clearRect(0, 0, canvas_width, canvas_height)
@@ -123,20 +128,20 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
     if (width < 0) and (height < 0):
         #flip horizontally and vertically
         ctx.scale(-1, -1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, -width, -height, -x, -y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, -width, -height, -x * _scale, -y * _scale, width*_scale, height*_scale)
 
     elif width < 0:
         #flip horizontally
         ctx.scale(-1, 1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, -width, height, -x, y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, -width, height, -x * _scale, y * _scale, width*_scale, height*_scale)
 
     elif height < 0:
         #flip vertically
         ctx.scale(1, -1)
-        ctx.drawImage(imageBank[image_bank], _x, _y, width, -height, x, -y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, width, -height, x * _scale, -y * _scale, width*_scale, height*_scale)
     
     else:
-        ctx.drawImage(imageBank[image_bank], _x, _y, width, height, x, y, width, height)
+        ctx.drawImage(imageBank[image_bank], _x, _y, width, height, x * _scale, y * _scale, width*_scale, height*_scale)
 
     ctx.restore()
 
@@ -144,15 +149,18 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
 
 
 def text(x, y, text: str, color):
+    ctx.font = "10px Monospace"
+
     if(color == 7):
         ctx.fillStyle = '#fff'
 
-    ctx.fillText(text, x, y);
+    ctx.fillText(text, x*_scale, y*_scale);
 
 def quit():
     pass
 
 ### to do transparent colors into transparent pixels
+
 """
 var imgd = ctx.getImageData(0, 0, imageWidth, imageHeight),
     pix = imgd.data;
