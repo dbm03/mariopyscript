@@ -30,11 +30,11 @@
             display: flex;
             justify-content: center;
         }
-        img {
+        .logo {
             max-width: 32px;
         }
 
-        img { 
+        img:not(.logo) { 
             image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
             image-rendering: -moz-crisp-edges;          /* Firefox                        */
             image-rendering: -o-crisp-edges;            /* Opera                          */
@@ -64,7 +64,7 @@
 <body>
     <header>
         <a href="https://github.com/Barrarroso/mariopyscript" target="_blank">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="logo">
             Source Code
         </a>
     </header>
