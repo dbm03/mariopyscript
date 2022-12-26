@@ -2,5 +2,5 @@ Port of Mario Bros game made in python with pyxel retro game engine into pyscrip
 Try it yourself [here](https://barrarroso.github.io/mariopyscript)!
 ## Demo
 Demonstration of the game
-![demo animation1](/.github/mario1.gif)
-![demo animation2](/.github/mario2.gif)
+![demo animation1](/.github/mario1.gif =256x200)
+![demo animation2](/.github/mario2.gif =256x200)
