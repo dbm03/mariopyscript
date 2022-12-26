@@ -1,26 +1,16 @@
 from js import (
-    requestAnimationFrame,
-    console,
     document,
-    devicePixelRatio,
-    ImageData,
-    Uint8ClampedArray,
-    CanvasRenderingContext2D as Context2d,
-    requestAnimationFrame,
-    Element,
-    window,
     setInterval,
 )
 
 from pyodide.ffi import create_proxy
 
 import pyxel
-from particles import Firework
 from level import Level
 import settings
 
 class App:
-    
+
     def __init__(self):
         canvasDOM = document.querySelector("#canvas")
         
@@ -33,7 +23,7 @@ class App:
     
     def start_game(self):
         proxy = create_proxy(self.game_loop)
-        interval_id = setInterval(proxy, 33, "a parameter");
+        setInterval(proxy, 33, "a parameter");
 
     def game_loop(self, *args, **kwargs):
         #requestAnimationFrame(create_proxy(self.game_loop))

@@ -1,15 +1,7 @@
 from js import (
-    console,
     document,
-    devicePixelRatio,
-    CanvasRenderingContext2D as Context2d,
-    requestAnimationFrame,
     Element,
-    window,
-    Image,
-    addEventListener,
 )
-from pyodide.ffi import create_proxy
 from pyodide.ffi.wrappers import add_event_listener
 
 ctx = None
