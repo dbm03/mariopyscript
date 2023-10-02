@@ -6,78 +6,55 @@
     <title>MarioJS</title>
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    <style type="text/css">
-        canvas {
-            margin-top: calc(100px*3);
-            transform: scale(4);
-            image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-            image-rendering: -moz-crisp-edges;          /* Firefox                        */
-            image-rendering: -o-crisp-edges;            /* Opera                          */
-            image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-            image-rendering: pixelated;                 /* Universal support since 2021   */
-            image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-            -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
-            font-smooth: never !important;
-            -webkit-font-smoothing : none !important;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        header{
-            width:100%;
-            display: flex;
-            justify-content: center;
-        }
-        .logo {
-            max-width: 32px;
-        }
-
-        img:not(.logo) { 
-            image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-            image-rendering: -moz-crisp-edges;          /* Firefox                        */
-            image-rendering: -o-crisp-edges;            /* Opera                          */
-            image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-            image-rendering: pixelated;                 /* Universal support since 2021   */
-            image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-            -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
-        }
-        a{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px;
-            text-decoration: none;
-            color:darkcyan;
-            background: #fff;
-        }
-
-        footer{
-            width:100%;
-            display: flex;
-            justify-content: center;
-            margin-top:calc(100px*3);
-        }
-    </style>
+    <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
     <header>
-        <a href="https://github.com/barrosodavid/mariopyscript" target="_blank">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="logo">
-            Source Code
-        </a>
+        <h1>Mario PyScript</h1>
+        <p class="secondary-text">Mario Bros clone made in Python running in the web with PyScript</p>
     </header>
-    <div class="container">
-        <canvas id="canvas" width="256" height="200" style="background-color:#333"></canvas>
+    <div class="mobile-unavailable-message">
+        <p class="secondary-text">Sorry! This game is unavailable in mobile. You have to play on a dekstop device.</p>
+        <a href="https://github.com/barrosodavid/mariopyscript" target="_blank">Source code&nbsp;<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 003.8.4c8.3 0 11.5-6.1 11.5-11.4 0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 01-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5-10.2-26.5-24.9-33.6-24.9-33.6-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8 11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0025.6-6c2-14.8 7.8-24.9 14.2-30.7-49.7-5.8-102-25.5-102-113.5 0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 015-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 01112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 015 .5c12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6 0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5 0 30.7-.3 55.5-.3 63 0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 004-.4C415.9 449.2 480 363.1 480 261.7 480 134.9 379.7 32 256 32z"></path></svg></a>
     </div>
-    <footer>
-        <a href="https://github.com/barrosodavid" target="_blank">Made by David</a>
-    </footer>
+    <div class="only-desktop">
+        <main class="game-container">
+            <div class="box-shadow" width="256" height="200"></div>
+            <canvas id="canvas" width="256" height="200" style="background-color:#333"></canvas>
+        </main>
+        <footer>
+            <h2>Controls</h2>
+            <div class="row-flex">
+                <div>
+                    <span class="secondary-text">Move:</span>
+                    <div class="center-flex">
+                        <kbd>◄</kbd>
+                        <div class="v-divider"></div>
+                        <kbd>►</kbd>
+                    </div>
+                </div>
+                <div>
+                    <span class="secondary-text">Jump:</span>
+                    <div class="center-flex">
+                        <kbd>▲</kbd>
+                        <p class="secondary-text">&nbsp;&nbsp;or&nbsp;&nbsp;</p>
+                        <kbd class="wide-kbd">Space</kbd>
+                    </div>
+                </div>
+                <div>
+                    <span class="secondary-text">???</span>
+                    <div class="center-flex">
+                        <kbd>B</kbd>
+                    </div>
+                </div>
+            </div>
+            <a href="https://github.com/barrosodavid/mariopyscript" target="_blank">Source code&nbsp;<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 003.8.4c8.3 0 11.5-6.1 11.5-11.4 0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 01-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5-10.2-26.5-24.9-33.6-24.9-33.6-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8 11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0025.6-6c2-14.8 7.8-24.9 14.2-30.7-49.7-5.8-102-25.5-102-113.5 0-25.1 8.7-45.6 23-61.6-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 015-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 01112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 015 .5c12.2 31.6 4.5 55 2.2 60.8 14.3 16.1 23 36.6 23 61.6 0 88.2-52.4 107.6-102.3 113.3 8 7.1 15.2 21.1 15.2 42.5 0 30.7-.3 55.5-.3 63 0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 004-.4C415.9 449.2 480 363.1 480 261.7 480 134.9 379.7 32 256 32z"></path></svg></a>
+        </footer>
+    </div>
     <py-config>
-    [[fetch]]
-    files = ["/assets/background_03.png","/assets/spritesheet_mario.png","/assets/tiles.png", 
-    "pyxel.py", "animation.py", "sprite.py", "particles.py", "settings.py", "level.py", "level_tiles.py", "mario.py", "items.py", "enemies.py", "entity.py"]
+        [[fetch]]
+        files = ["/assets/background_03.png","/assets/spritesheet_mario.png","/assets/tiles.png", 
+        "pyxel.py", "animation.py", "sprite.py", "particles.py", "settings.py", "level.py", "level_tiles.py", "mario.py", "items.py", "enemies.py", "entity.py"]
     </py-config>
     <py-script src="./pyxel.py">
     </py-script>

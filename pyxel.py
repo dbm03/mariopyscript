@@ -21,12 +21,15 @@ KEY_DOWN = 40
 
 KEY_B = 66
 
+KEY_SPACE = 32
+
 _pressedKeys = {
     KEY_LEFT: False, 
     KEY_UP: False, 
     KEY_RIGHT: False, 
     KEY_DOWN: False,
-    KEY_B: False
+    KEY_B: False,
+    KEY_SPACE: False
 }
 
 def _handle_input(e):
@@ -135,7 +138,7 @@ def blt(x, y, image_bank: int, _x, _y, width, height, transparent_col=0):
 
 
 def text(x, y, text: str, color):
-    ctx.font = "10px Monospace"
+    ctx.font = "11px Monospace"
     ctx.textAlign = 'left'
     if(color == 7):
         ctx.fillStyle = '#fff'

@@ -143,7 +143,7 @@ class Mario(Entity):
                 self.__apply_gravity()
 
                 if self.can_jump:
-                    if pyxel.btn(pyxel.KEY_UP):
+                    if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.KEY_SPACE):
                         self._vy -= self.jump_force
                     # big mario can crouch
                     elif pyxel.btn(pyxel.KEY_DOWN) and self.big:
@@ -191,7 +191,7 @@ class Mario(Entity):
                 if self.y > settings.SCREEN_HEIGHT:
                     self.die()
                 if pyxel.btn(pyxel.KEY_B):
-                    items.append(Mushroom(100,100, 1))
+                    self._vy = -self.jump_force * 2
             
             if self._current_action == "grow":
                 if self.animation.played_once:

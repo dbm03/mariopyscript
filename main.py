@@ -44,6 +44,6 @@ class App:
         if not pyxel.loading:
             self.level.draw()
         else:
-            pyxel.text(100,100,"Loading...", 7)
+            pyxel.text(100, 100, "Loading...", 7)
 
 App()
