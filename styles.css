@@ -7,6 +7,8 @@
   --background-color: #fff;
   --primary-text-color: #000;
   --secondary-text-color: #726f7a;
+  --canvas-width: 256px;
+  --canvas-height: 200px;
   --border-color: #ccc;
   --scale: 3;
 }
@@ -31,10 +33,10 @@ body {
 canvas {
   position: absolute;
   border-radius: 0.25rem;
-  left: 256px;
-  top: 200px;
+  left: var(--canvas-width);
+  top: var(--canvas-height);
   transform: scale(var(--scale));
-  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: optimizeSpeed;
   image-rendering: -moz-crisp-edges; /* Firefox                        */
   image-rendering: -o-crisp-edges; /* Opera                          */
   image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
@@ -65,12 +67,8 @@ h2 {
   font-weight: 600;
 }
 
-.logo {
-  max-width: 32px;
-}
-
 img:not(.logo) {
-  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: optimizeSpeed;
   image-rendering: -moz-crisp-edges; /* Firefox                        */
   image-rendering: -o-crisp-edges; /* Opera                          */
   image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
@@ -78,6 +76,11 @@ img:not(.logo) {
   image-rendering: optimize-contrast; /* CSS3 Proposed                  */
   -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
 }
+
+svg {
+  color: var(--primary-text-color);
+}
+
 a {
   display: flex;
   justify-content: center;
@@ -116,7 +119,6 @@ footer {
   margin: auto auto 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .row-flex {
@@ -128,6 +130,7 @@ footer {
 
 .center-flex {
   display: flex;
+  gap: 0.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -135,19 +138,15 @@ footer {
 .box-shadow {
   position: absolute;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  width: calc(256px * var(--scale));
-  height: calc(200px * var(--scale));
+  width: calc(var(--canvas-width) * var(--scale));
+  height: calc(var(--canvas-height) * var(--scale));
 }
 
 .game-container {
   position: relative;
-  width: 768px;
-  height: 600px;
+  width: calc(var(--canvas-width) * var(--scale));
+  height: calc(var(--canvas-height) * var(--scale));
   margin: auto;
-}
-
-.accent-text {
-  color: darkcyan;
 }
 
 .secondary-text {
@@ -158,20 +157,18 @@ footer {
   width: 1rem;
 }
 
+.controls-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #000;
     --primary-text-color: #fff;
     --secondary-text-color: #a3a8b7;
     --border-color: #353942;
-  }
-
-  svg {
-    color: white;
-  }
-
-  .logo {
-    filter: invert(1);
   }
 }
 
@@ -190,7 +187,7 @@ footer {
 }
 
 @media (max-width: 767px) {
-  /* Add CSS rules to hide content here */
+  /* CSS rules to hide content on mobile */
   main {
     display: none;
   }

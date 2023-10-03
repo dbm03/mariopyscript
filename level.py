@@ -286,14 +286,14 @@ class Level:
 
         # HUD elements
         # draw score
-        pyxel.text(8, 8, "MARIO", 7)
-        pyxel.text(8, 16, str(self.player.score), 7)
+        pyxel.text(8, 12, "MARIO", 7)
+        pyxel.text(8, 20, str(self.player.score), 7)
         # draw coins
-        pyxel.text(64, 8, "x" + str(self.player.coins), 7)
-        pyxel.blt(48, 8, 0, 32, 32, -16, 16, 12)
+        pyxel.text(64, 12, "x" + str(self.player.coins), 7)
+        pyxel.blt(48, 0, 0, 32, 32, -16, 16, 12)
         # draw time
-        pyxel.text(SCREEN_WIDTH / 1.5, 8, "TIME:" + str(self.time), 7)
-        pyxel.text(100, 8, "LIVES:" + str(self.lives), 7)
+        pyxel.text(SCREEN_WIDTH / 1.5, 12, "TIME:" + str(self.time), 7)
+        pyxel.text(100, 12, "LIVES:" + str(self.lives), 7)
 
     # These following functions are NOT USED IN FINAL VERSION, DEBUGGING PURPOSES
     def add_block(self, x: int, y: int):
